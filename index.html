@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset="utf-8"> 
+<html lang="pl">
+<head>
+  <title>page title</title>
+</head>
+<body>
+  <h1>Title</h1>
+  <p>Press the button to get location:</p>
+  <button onclick="getLocation()">Check your location</button>
+  <p>Your location: <span id="location"></span></p>
+
+  <script>
+    function getLocation() {
+    
+      var xhttp = new XMLHttpRequest();
+
+      
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          
+          var response = this.responseText;
+       
+          document.getElementById("location").innerHTML = response;
+        }
+      };
+
+      
+      xhttp.open("GET", "example.php", true);
+      xhttp.send();
+    }
+  </script>
+</body>
+</html>
