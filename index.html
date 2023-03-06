@@ -3,32 +3,27 @@
 <html lang="pl">
 <head>
   <title>page title</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var response = JSON.parse(this.responseText);
+          var country = response.country;
+          if(country=="China" || country=="Indonesia" || country=="Russia")
+            {
+              location.href = "https://www.google.pl";
+
+            }
+        }
+      };
+      xhr.open("GET", "localization.php", true);
+      xhr.send();
+    });
+  </script>
 </head>
 <body>
   <h1>Title</h1>
-  <p>Press the button to get location:</p>
-  <button onclick="getLocation()">Check your location</button>
-  <p>Your location: <span id="location"></span></p>
 
-  <script>
-    function getLocation() {
-    
-      var xhttp = new XMLHttpRequest();
-
-      
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          
-          var response = this.responseText;
-       
-          document.getElementById("location").innerHTML = response;
-        }
-      };
-
-      
-      xhttp.open("GET", "example.php", true);
-      xhttp.send();
-    }
-  </script>
 </body>
 </html>
